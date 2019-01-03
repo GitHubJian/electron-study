@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World!</title>
+
+    <style>
+      #holder {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #e3e3e3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <div id="holder">Drag your file here</div>
+
+    <script>
+      const { ipcRenderer } = require('electron')
+      // ipcRenderer.sendSync('synchronous-message', 'ping')
+
+      ipcRenderer.on('asynchronous-reply', (event, arg) => {
+        console.log('asynchronous-reply', arg)
+      })
+
+      ipcRenderer.send('asynchronous-message', 'ping')
+
+      // let myNotification = new Notification('标题', { body: '通知正文内容' })
+
+      // myNotification.onclick = () => {
+      //   console.log('通知被点击')
+      // }
+      // setTimeout(() => {
+      //   window.open('https://github.com', '_self', 'nodeIntegration=no')
+      // }, 3e3)
+    </script>
+  </body>
+</html>
